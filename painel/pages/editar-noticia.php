@@ -17,9 +17,9 @@
 
 
 
-<section style="background-color: #ebebeb;display: flex; align-items: center; height: 100vh;">
+<section style="background-color: #ebebeb;display: flex; align-items: center; height: 100%;">
 
-<div class="container" style="border-radius: 7px; background-color: rgb(250, 250, 250); display: flex; align-items: center;justify-content: center; padding: 40px; width: 800px;">
+<div class="container mt-5 mb-5" style="border-radius: 7px; background-color: rgb(250, 250, 250); display: flex; align-items: center;justify-content: center; padding: 40px; width: 800px;">
 
 
     <form style="width: 600px;" method="post" enctype="multipart/form-data">
@@ -85,7 +85,8 @@
         </div>
         <div class="mb-3">
             <label for="conteudo" class="form-label">Conteudo</label>
-            <input type="text" class="form-control" id="conteudo" name="conteudo" value="<?php  echo $noticia['conteudo'];?>"  >
+            <textarea  name="conteudo" id="mytextarea"  class="form-control" ><?php  echo $noticia['conteudo'];?></textarea>
+
         </div>
         
         <div class="mb-3">
