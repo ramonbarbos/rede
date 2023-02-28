@@ -30,7 +30,7 @@ include('config.php');
      <?php Componente::carregarNav(); ?>
      
     
-     <div class="container-principal">
+     <div class="container-principal" style="background-color:#f2f2f2; height: 100%;">
    
    <?php
       $url = isset($_GET['url']) ? $_GET['url'] : 'home'; //Buscando a pagina home

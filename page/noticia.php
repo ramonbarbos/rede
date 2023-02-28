@@ -11,52 +11,10 @@
 ?>
 
 
-   
-    <div id="legendas" class="container-fluid">
-
-            <?php 
-        
-              if(@$cat['nome'] ==''){ 
-                echo '<p>Todas as Noticias</p>';
-              }else{
-                echo '<p>'.$cat['nome'].'</p>';
-
-              }
-             
-            ?>
-              </div>
-     
+<nav class="navbar justify-content-between" style="background-color: #329da8; height: 90px;color:white">
 
 
-    <section id="painel-noticia" class="container mt-5"> 
-
-     
-
-        <div id="lateral" class="container-fluid" ><!--INICIO LATERAL-->
-                          
-                <div id="container-lateral" >
-
-                <div class="caixa mt-4 mb-5" style="width: 18rem; height: 10rem;background-color:  #c6cecf; border-radius: 7px;">
-
-                    <div class="titulo mt-3">
-                        Realizar uma busca:
-                    </div>
-
-                    <form  method="post">
-                          <input class="form-control mt-2" type="text" name="parametro" placeholder="O que deseja procurar?" aria-label="Search">
-                          <input class="btn btn-outline-success mt-3" type="submit" name="buscar" value="Pesquisar"> 
-                    </form>
-
-                </div>
-
-
-                <div class="caixa mt-4 mb-4" style="width: 18rem; height: 8rem;background-color:  #c6cecf; border-radius: 7px;">
-
-                    <div class="titulo mt-3">              
-                        Selecionar categoria:
-                    </div>
-                  
-                    <form >
+            <form >
                         <select class="form-control mt-2"  name="categoria">
 
 
@@ -76,13 +34,33 @@
 
                     </form>
 
-                </div>
 
-                </div>
-       </div><!--FIM LATERAL-->
+      <?php 
+          
+          if(@$cat['nome'] ==''){ 
+            echo '<a class="navbar-brand">Feed</a>';
+          }else{
+            echo '<a class="navbar-brand">'.$cat['nome'].'</a>';
+
+          }
+        
+        ?>
+
+                <form  method="post">
+                          <input class="form-control mt-2" type="text" name="parametro" placeholder="O que deseja procurar?" aria-label="Search">
+                           
+                    </form>
+
+</nav>
+   
 
 
-    <div id="container-noticias" style="" ><!--INICIO NOTICIAS-->
+<section style="width: 80%; margin:auto; margin-top:30px; height: 100%;">
+
+
+
+
+    <div class="container" style="background-color:white; padding:10px; margin-bottom:10px; " ><!--INICIO NOTICIAS-->
 
           
           
@@ -137,10 +115,27 @@
                       $sql =  MySql::conectar()->prepare("SELECT  `slug` FROM  `tb_site.categoria` WHERE id = ? ");
                       $sql->execute(array($value['categoria_id']));
                       $categoriaNome = $sql->fetch()['slug'];
+
+
+                      //Buscando usuario que publicou
+                      
+                      $user_id = $value['id_user'];
+                     $usuario_resposavel = Painel::select('tb_admin.usuarios','id=?',array($user_id));
                   ?>
 
               
+                <div class="usuario d-flex" style="display:flex;  align-items: center;">
+
+                  <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap" style="width: 50px; height: 50px;border-radius: 30px;" >
+
+                  <h6 style="margin-left:5px" ><?php echo @$usuario_resposavel['nome'];?></h6>
+
+                </div>
+
                 <div class=" mt-4 mb-4" style="width: 100%;background-color:white;display:flex;">
+
+                
+               
                 <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap" style="width: 50%; height: 260px;" >      
 
                   <div class="card-body">
