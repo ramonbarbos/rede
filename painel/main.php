@@ -36,7 +36,7 @@
 
     <title>Painel</title>
   </head>
-  <body>
+  <body >
 
 
      <?php ComponentePainel::carregarNav(); ?>

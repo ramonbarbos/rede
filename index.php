@@ -29,7 +29,7 @@ include('config.php');
 
     <title><?php echo NOME_SITE; ?></title>
   </head>
-  <body>
+  <body style="background-color:#f2f2f2;">
      <?php Componente::carregarNav(); ?>
      
     

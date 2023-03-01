@@ -19,7 +19,8 @@
 	$post = $post->fetch();
 
 ?>
-<section class="container mt-5">
+<div  class="container mt-5">  <a class="nav-link" style="color:#329da8;" href="<?php echo INCLUDE_PATH?>noticia">Voltar</a></div>
+<section class="container mt-3">
 	<div class="center">
 	<header>
 		<h1><i class="fa fa-calendar"></i>  <?php echo $post['titulo'] ?></h1>

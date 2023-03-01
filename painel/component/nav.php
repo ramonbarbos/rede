@@ -2,33 +2,58 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
  
-  
+<div class="container">
 
-    <a class="navbar-brand" href="<?php echo INCLUDE_PATH_PAINEL?>">Painel de Controle</a>
+          <ul class="navbar-nav"> <!--PARTE 1 -->
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            
+                  <a class="navbar-brand" href="<?php echo INCLUDE_PATH_PAINEL?>">Painel do Usuario</a>
 
-    
-    <div class="div" style=" width: 100%;display:flex; justify-content: end;"><!-- Inicio --> 
-    
-      <ul class="navbar-nav" >
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
 
-       
-      <li class="nav-item">
-      <img style="height: 50px;width: 50px; border-radius: 100px;" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $_SESSION['img']; ?>" alt="">
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo INCLUDE_PATH_PAINEL ?>?logout">Sair</a>
-        </li>
-      
-      </ul>
- 
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-   
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo INCLUDE_PATH?>">Inicio</a>
+                    </li>
 
-  </div><!-- Fim -->
 
+                    </div>
+
+                
+              </ul> <!--FINAL 1 -->
+
+              <ul class="navbar-nav"> <!--PARTE 2 -->
+          
+        
+          <li class="nav-item dropdown">
+
+             <!-- FOTO -->
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 
+
+               <?php  if(Painel::logado() == false){  ?>
+               <img style="height: 50px;width: 50px; border-radius: 100px;" src="<?php echo INCLUDE_PATH ?>img/user.png" alt="">
+               <?php }else{  ?>
+               <img style="height: 50px;width: 50px; border-radius: 100px;" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $_SESSION['img']; ?>" alt="">
+               <?php }  ?>
+
+               </a>
+                 <!-- MENU -->
+               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH ?>?logout">Sair</a>
+               </div>
+
+               </li>
+         
+
+
+       </li>
+     </ul><!--FINAL 2 -->
+
+          
+  </div>
 </nav>
 

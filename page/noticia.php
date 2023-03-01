@@ -13,8 +13,10 @@
 
 <nav class="navbar justify-content-between" style="background-color: #329da8; height: 90px;color:white">
 
+    <div class="container">
 
-            <form >
+        
+              <form >
                         <select class="form-control mt-2"  name="categoria">
 
 
@@ -35,24 +37,28 @@
                     </form>
 
                     
-                  
+                              
 
 
-      <?php 
-          
-          if(@$cat['nome'] ==''){ 
-            echo '<a class="navbar-brand">Feed</a>';
-          }else{
-            echo '<a class="navbar-brand">'.$cat['nome'].'</a>';
+                  <?php 
+                      
+                      if(@$cat['nome'] ==''){ 
+                        echo '<a class="navbar-brand">Feed</a>';
+                      }else{
+                        echo '<a class="navbar-brand">'.$cat['nome'].'</a>';
 
-          }
-        
-        ?>
+                      }
+                    
+                    ?>
 
                 <form  method="post">
                           <input class="form-control mt-2" type="text" name="parametro" placeholder="O que deseja procurar?" aria-label="Search">
                            
                     </form>
+
+
+
+    </div>
 
 </nav>
    
@@ -61,7 +67,7 @@
 <section style="width: 80%; margin:auto; margin-top:30px; height: 100%;">
 
 
-<a type="button" class="btn btn-secondary btn-lg btn-block mb-5" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">Adicionar</a>
+<a type="button" style="background-color:#329da8;color:white;" class="btn btn-lg btn-block mb-5" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">Adicionar</a>
 
     <div class="container" style="background-color:white; padding:10px; margin-bottom:50px; " ><!--INICIO NOTICIAS-->
 

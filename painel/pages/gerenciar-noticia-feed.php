@@ -15,7 +15,7 @@ if(isset($_GET['excluir'])){
     Painel::deletar('tb_site.noticias',$idExcluir);
 
 
-    Painel::redirect(INCLUDE_PATH);
+    Painel::redirect(INCLUDE_PATH.'noticia');
 
 }
 
