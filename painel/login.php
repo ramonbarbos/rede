@@ -51,8 +51,11 @@
                 echo '<h6>Logado</h6>';
                 if(isset($_GET['adicionar'])){
                     header('Location: '.INCLUDE_PATH_PAINEL.'pages/cadastrar-noticia-feed?adicionar');
+                }else if(isset($_GET['gerenciar'])){
+                    header('Location: '.INCLUDE_PATH_PAINEL.'pages/gerenciar-noticia-feed?gerenciar');
+
                 }else{
-                    header('Location: '.INCLUDE_PATH_PAINEL);
+                    // header('Location: '.INCLUDE_PATH_PAINEL);
 
                 }
                 //die();

@@ -9,10 +9,12 @@
         if(isset($_GET['adicionar'])){     
            include('pages/cadastrar-noticia-feed.php');   
 
-        }else{
-            //include('pages/cadastrar-noticia-feed.php');   
-            include('main.php');
+        }else if(isset($_GET['gerenciar'])){
+            include('pages/gerenciar-noticia-feed.php');     
             
+        }else{
+            include('main.php');
+
         }
             
         

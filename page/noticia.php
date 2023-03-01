@@ -34,6 +34,9 @@
 
                     </form>
 
+                    
+                  
+
 
       <?php 
           
@@ -124,13 +127,26 @@
                   ?>
 
               
-                <div class="usuario d-flex" style="display:flex;  align-items: center;">
-
+                <div class="usuario d-flex" style="display:flex;  align-items: center;justify-content: space-between;"> <!--INICIO USUARIO-->
+                      <div class="usuario-perfil " style="display:flex;  align-items: center;">
                   <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap" style="width: 50px; height: 50px;border-radius: 30px;" >
 
-                  <h6 style="margin-left:5px" ><?php echo @$usuario_resposavel['nome'];?></h6>
+                  <h6 style="margin-left:10px" ><?php echo @$usuario_resposavel['nome'];?></h6>
+                  </div>
+                
 
-                </div>
+                       
+                  <div class="btn-group dropstart"> <!--INICIO menu-->
+                        <a class="dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <!-- <img style="height: 20px;width: 20px; border-radius: 100px;" src="<?php echo INCLUDE_PATH ?>img/mostrar.png" alt=""> -->
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
+                        </div>
+
+                    </div> <!--final menu-->
+
+                </div><!--FINAL USUARIO-->
 
                 <div class=" mt-4 mb-4" style="width: 100%;background-color:white;display:flex;">
 
