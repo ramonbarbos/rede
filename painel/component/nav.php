@@ -43,11 +43,15 @@
                </a>
                  <!-- MENU -->
                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH ?>?logout">Sair</a>
+               <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                Sair
+              </button>
+                
                </div>
 
                </li>
          
+              
 
 
        </li>
@@ -57,3 +61,24 @@
   </div>
 </nav>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja sair?
+      </div>
+      <div class="modal-footer">
+      <a class="btn btn-danger" href="<?php echo INCLUDE_PATH ?>?logout">Sim</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+      </div>
+    </div>
+  </div>
+</div>
