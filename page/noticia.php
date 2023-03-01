@@ -210,6 +210,7 @@
 
       </ul>
         </div>
+        
 
 <?php }else{
     include('page/noticia_single.php');

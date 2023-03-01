@@ -48,6 +48,13 @@ include('MySql.php');
             }
         }
 
+        //AVISO
+        public static function modal($messagem){
+            
+
+        }
+
+
         //Validar Imagem de Cadastro
         public static function imagemValida($imagem){
             if($imagem['type'] == 'image/jpeg' ||

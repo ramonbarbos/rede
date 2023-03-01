@@ -5,15 +5,20 @@
 
 verificaPermissaoPagina(0);
 
+$id = (int)$_GET['gerenciar']; 
+$noticia = Painel::select('tb_site.noticias','id=?',array($id));
+
+
 if(isset($_GET['excluir'])){
 
     $idExcluir = intval($_GET['excluir']);
     Painel::deletar('tb_site.noticias',$idExcluir);
-    Painel::redirect(INCLUDE_PATH_PAINEL.'gerenciar-noticia');
+
+
+    Painel::redirect(INCLUDE_PATH);
 
 }
- $id = (int)$_GET['gerenciar']; 
- $noticia = Painel::select('tb_site.noticias','id=?',array($id));
+
 
 
 
@@ -37,7 +42,7 @@ if(isset($_GET['excluir'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo NOME_SITE?></title>
 </head>
-<body>
+<body style="width:100vw;height:100vh;display:flex;justify-content: center; ">
     
                     <div class="container-sm" style="border-radius: 7px; background-color: rgb(250, 250, 250); display: flex; align-items: center;justify-content: center; padding: 40px; width: 800px;">
 
@@ -69,9 +74,11 @@ if(isset($_GET['excluir'])){
                         <td><?php echo $noticia['categoria_id'];?></td>
                         <td><?php echo $noticia['data'];?></td>
                         <td><img style="width: 50px; height: 50px;" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $noticia['capa'] ?>" alt=""></td>
-                        <td><a  href="<?php echo INCLUDE_PATH_PAINEL ?>editar-noticia?id=<?php echo $noticia['id']; ?>" class="btn btn-warning">Iditar</a></td>
-                        <td> <a <?php verificaPermissaoMenu(2) ?> type="button" class="btn btn-danger" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticia?excluir=<?php echo $value['id']; ?>">Excluir</a></td>
-
+                        <td><a  href="<?php echo INCLUDE_PATH_PAINEL ?>editar-noticia-feed?id=<?php echo $noticia['id']; ?>" class="btn btn-warning">Iditar</a></td>
+                        <td> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                          Excluir
+                        </button></td>
+                                                
                         </tr>
                      
                     </tbody>
@@ -85,6 +92,29 @@ if(isset($_GET['excluir'])){
                     </nav>
 
                     </div>
+
+ 
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Tem certeza que deseja excluir?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <a  type="button" class="btn btn-danger" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticia-feed?excluir=<?php echo $noticia['id']; ?>">Sim</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

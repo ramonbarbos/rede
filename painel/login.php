@@ -50,15 +50,15 @@
                 $_SESSION['img'] = $info['img'];
                 echo '<h6>Logado</h6>';
                 if(isset($_GET['adicionar'])){
-                    header('Location: '.INCLUDE_PATH_PAINEL.'pages/cadastrar-noticia-feed?adicionar');
+                    header('Location: '.INCLUDE_PATH.'noticia');
                 }else if(isset($_GET['gerenciar'])){
-                    header('Location: '.INCLUDE_PATH_PAINEL.'pages/gerenciar-noticia-feed?gerenciar');
+                    header('Location: '.INCLUDE_PATH.'noticia');
 
                 }else{
-                    // header('Location: '.INCLUDE_PATH_PAINEL);
+                    header('Location: '.INCLUDE_PATH_PAINEL);
 
                 }
-                //die();
+                die();
             }else{
                 echo '<h6>Usuario ou senha incorreto.</h6>';
             }
