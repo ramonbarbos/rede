@@ -1,5 +1,4 @@
 <?php
-
     include('class/Painel.php');
     include('../config.php');
     
@@ -7,7 +6,16 @@
     if(Painel::logado() == false){ 
         include('login.php');
     }else{
-        include('main.php');
+        if(isset($_GET['adicionar'])){     
+           include('pages/cadastrar-noticia-feed.php');   
+
+        }else{
+            //include('pages/cadastrar-noticia-feed.php');   
+            include('main.php');
+            
+        }
+            
+        
     }
 
 

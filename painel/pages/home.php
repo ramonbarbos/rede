@@ -3,7 +3,6 @@
 
 
 
-verificaPermissaoPagina(0);
 if(isset($_GET['excluir'])){
     $idExcluir = intval($_GET['excluir']);
     Painel::deletar('tb_admin.usuarios',$idExcluir);
@@ -31,8 +30,8 @@ if(isset($_POST['acao'])){
     <tr>
     <th scope="col">Nome</th>
     <th scope="col">Cargo</th>
-    <th scope="col">#</th>
-    <th scope="col">#</th>
+    <th scope="col"> </th>
+    <th scope="col"> </th>
  
     </tr>
 </thead>
@@ -46,7 +45,7 @@ if(isset($_POST['acao'])){
     <tr>
     <td><?php echo $value['nome'];?></td>
     <td><?php echo $value['cargo'];?></td>
-    <td><a  href="<?php echo INCLUDE_PATH_PAINEL ?>atualiza-user?id=<?php echo $value['id']; ?>" class="btn btn-warning">Iditar</a></td>
+    <td><a  <?php verificaPermissaoMenu(2) ?> href="<?php echo INCLUDE_PATH_PAINEL ?>atualiza-user?id=<?php echo $value['id']; ?>" class="btn btn-warning">Iditar</a></td>
     <td> <a <?php verificaPermissaoMenu(2) ?> type="button" class="btn btn-danger" href="<?php echo INCLUDE_PATH_PAINEL ?>home?excluir=<?php echo $value['id']; ?>">Excluir</a></td>
 
     </tr>

@@ -6,6 +6,7 @@
         Painel::logout();
        
     }
+//verificaPermissaoPagina(0);
     
 ?>
 

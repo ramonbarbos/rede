@@ -49,7 +49,12 @@
                 $_SESSION['nome'] = $info['nome'];
                 $_SESSION['img'] = $info['img'];
                 echo '<h6>Logado</h6>';
-                header('Location: '.INCLUDE_PATH_PAINEL);
+                if(isset($_GET['adicionar'])){
+                    header('Location: '.INCLUDE_PATH_PAINEL.'pages/cadastrar-noticia-feed?adicionar');
+                }else{
+                    header('Location: '.INCLUDE_PATH_PAINEL);
+
+                }
                 //die();
             }else{
                 echo '<h6>Usuario ou senha incorreto.</h6>';

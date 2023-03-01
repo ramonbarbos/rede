@@ -58,9 +58,9 @@
 <section style="width: 80%; margin:auto; margin-top:30px; height: 100%;">
 
 
+<a type="button" class="btn btn-secondary btn-lg btn-block mb-5" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">Adicionar</a>
 
-
-    <div class="container" style="background-color:white; padding:10px; margin-bottom:10px; " ><!--INICIO NOTICIAS-->
+    <div class="container" style="background-color:white; padding:10px; margin-bottom:50px; " ><!--INICIO NOTICIAS-->
 
           
           

@@ -3,7 +3,10 @@ include('./class/Componente.php');
 include('config.php');
  include('painel/class/Painel.php');
 
-
+ if(isset($_GET['logout'])){
+  Painel::logout();
+ 
+}
 
 ?>
 

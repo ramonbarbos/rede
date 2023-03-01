@@ -15,12 +15,13 @@ include('MySql.php');
             return isset($_SESSION['login']) ? true : false;
         }
 
-        //Função Logout
+        //Função Logout no painel
         public static function logout(){
             session_destroy();
-            header('Location: '.INCLUDE_PATH_PAINEL);
+            header('Location: '.INCLUDE_PATH);
         }
-
+       
+      
 
         public static function carregarPagina(){
             if(isset($_GET['url'])){
