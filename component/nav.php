@@ -44,7 +44,7 @@
                     <?php  if(Painel::logado() == false){  ?>
                       <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL; ?>usuario_single?user">Perfil</a>
                     <?php }else{  ?>
-                      <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL_USUARIO; ?>usuario_single?user=<?php echo $_SESSION['user']?>">Perfil</a>
+                      <a class="dropdown-item" href="<?php echo INCLUDE_PATH; ?>usuario_single?user=<?php echo $_SESSION['user']?>">Perfil</a>
                       <?php }  ?>
 
                       <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>">Painel</a>
