@@ -48,12 +48,7 @@ include('MySql.php');
             }
         }
 
-        //AVISO
-        public static function modal($messagem){
-            
-
-        }
-
+       
 
         //Validar Imagem de Cadastro
         public static function imagemValida($imagem){
@@ -61,8 +56,8 @@ include('MySql.php');
                $imagem['type'] == 'image/jpg' ||
                $imagem['type'] == 'image/png' ){
     
-                $tamanho = $imagem['size']/1024;
-                if($tamanho < 300)
+                $tamanho = $imagem['size']/1200;
+                if($tamanho < 900)
                     return true;
                 else
                     return false;
@@ -74,6 +69,16 @@ include('MySql.php');
         }
         //Cadastrar imagem
         public static function uploadImagem($file){
+            $formato = explode('.',$file['name']);
+            $imagemNome = uniqid().'.'.$formato[count($formato) - 1];
+             if( move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$imagemNome))
+                return $imagemNome;
+            else    
+                return false;
+        
+        }
+        //Cadastrar capa
+        public static function uploadCapa($file){
             $formato = explode('.',$file['name']);
             $imagemNome = uniqid().'.'.$formato[count($formato) - 1];
              if( move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$imagemNome))

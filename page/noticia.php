@@ -61,65 +61,51 @@
     </div>
 
 </nav>
+<a type="button" style="background-color:#329da8;color:white;" class="btn btn-lg btn-block mt-5 mb-5" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">Adicionar</a>
+
+<?php 
+                     $porPagina = 5;
+
+                     $query = "SELECT * FROM `tb_site.noticias` ";
+                     if(@$cat['nome'] !=''){
+                       $query.="WHERE categoria_id = $cat[id]";
    
-
-
-<section style="width: 80%; margin:auto; margin-top:30px; height: 100%;">
-
-
-<a type="button" style="background-color:#329da8;color:white;" class="btn btn-lg btn-block mb-5" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">Adicionar</a>
-
-    <div class="container" style="background-color:white; padding:10px; margin-bottom:50px; " ><!--INICIO NOTICIAS-->
-
-          
-          
-             
-        <?php 
-                  
-                  $porPagina = 5;
-
-                  $query = "SELECT * FROM `tb_site.noticias` ";
-                  if(@$cat['nome'] !=''){
-                    $query.="WHERE categoria_id = $cat[id]";
-
-                  }
-
-                  //PESQUISAR
-
-                  if(isset($_POST['parametro'])){
-                    $busca = $_POST['parametro'];
-
-                    if(strstr($query, 'WHERE') !== false){
-                        $query.=" AND titulo LIKE '%$busca%' ";
-                    }else{
-                      $query.=" WHERE titulo LIKE '%$busca%' ";
-                    }
-                  }
-
-                  //PAGINAÇÃO
-                  
-                    if(!isset($_POST['parametro'])){  //CASO NAO TENHA PARAMETRO
-
-                      if(isset($_GET['pagina'])){
-                        $pagina = (int)$_GET['pagina'];
-                        $queryPg = ($pagina - 1) * $porPagina;
-                        $query.=" ORDER BY id DESC LIMIT $queryPg,$porPagina";
-                      }else{
-                        $pagina = 1;
-                        $query.=" ORDER BY id DESC LIMIT 0,$porPagina";
-                      }
-                    }else{
-                      $query.=" ORDER BY id DESC";
-                      
-                    }
-                  
-                  //BUSCAR NOTICIA 
-
-                  $sql =  MySql::conectar()->prepare($query);
-                  $sql->execute();
-                  $noticias = $sql->fetchAll();
-                ?>
-                <?php 
+                     }
+   
+                     //PESQUISAR
+   
+                     if(isset($_POST['parametro'])){
+                       $busca = $_POST['parametro'];
+   
+                       if(strstr($query, 'WHERE') !== false){
+                           $query.=" AND titulo LIKE '%$busca%' ";
+                       }else{
+                         $query.=" WHERE titulo LIKE '%$busca%' ";
+                       }
+                     }
+   
+                     //PAGINAÇÃO
+                     
+                       if(!isset($_POST['parametro'])){  //CASO NAO TENHA PARAMETRO
+   
+                         if(isset($_GET['pagina'])){
+                           $pagina = (int)$_GET['pagina'];
+                           $queryPg = ($pagina - 1) * $porPagina;
+                           $query.=" ORDER BY id DESC LIMIT $queryPg,$porPagina";
+                         }else{
+                           $pagina = 1;
+                           $query.=" ORDER BY id DESC LIMIT 0,$porPagina";
+                         }
+                       }else{
+                         $query.=" ORDER BY id DESC";
+                         
+                       }
+                     
+                     //BUSCAR NOTICIA 
+   
+                     $sql =  MySql::conectar()->prepare($query);
+                     $sql->execute();
+                     $noticias = $sql->fetchAll();
                     foreach($noticias as $key => $value) {
                       $sql =  MySql::conectar()->prepare("SELECT  `slug` FROM  `tb_site.categoria` WHERE id = ? ");
                       $sql->execute(array($value['categoria_id']));
@@ -132,19 +118,31 @@
                      $usuario_resposavel = Painel::select('tb_admin.usuarios','id=?',array($user_id));
                   ?>
 
-              
-                <div class="usuario d-flex" style="display:flex;  align-items: center;justify-content: space-between;"> <!--INICIO USUARIO-->
-                      <div class="usuario-perfil " style="display:flex;  align-items: center;">
-                  <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap" style="width: 50px; height: 50px;border-radius: 30px;" >
 
-                  <h6 style="margin-left:10px" ><?php echo @$usuario_resposavel['nome'];?></h6>
+<section style="width: 80%; margin:auto; margin-top:30px; height: 100%;">
+
+
+
+
+    <div class="container" style="background-color:white; padding:10px; margin-bottom:50px; " ><!--INICIO NOTICIAS-->
+
+          
+          
+
+              
+            <div class="usuario d-flex" style="display:flex;  align-items: center;justify-content: space-between;"> <!--INICIO USUARIO-->
+                    <div class="usuario-perfil " style="display:flex;  align-items: center;">
+
+                      <a href="<?php echo INCLUDE_PATH_PAINEL_USUARIO; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap" style="width: 50px; height: 50px;border-radius: 30px;" > </a>
+
+                      <h6 style="margin-left:10px" ><?php echo @$usuario_resposavel['nome'];?></h6>
                   </div>
                 
 
-                       
-                  <div class="btn-group dropstart"> <!--INICIO menu-->
+                       <!--INICIO menu-->
+                  <div class="btn-group dropstart"> 
                         <a class="dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <!-- <img style="height: 20px;width: 20px; border-radius: 100px;" src="<?php echo INCLUDE_PATH ?>img/mostrar.png" alt=""> -->
+                        
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                           <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
@@ -171,7 +169,6 @@
                     <a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Link da Noticia</a>
                   </div>
                 </div>
-          <?php } ?>
       
 
 
@@ -179,6 +176,7 @@
 
 
     </section> <!--FIM TOTAL-->
+    <?php } ?>
 
 
       <?php

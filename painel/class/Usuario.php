@@ -13,9 +13,9 @@
                 }
 
                 //Cadastro Usuarios
-                public static function cadastrarUsuario($user,$nome,$senha,$cargo,$imagem){
-                    $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` VALUES (null,?,?,?,?,?) ");
-                    $sql->execute(array($user,$nome,$senha,$cargo,$imagem));
+                public static function cadastrarUsuario($user,$nome,$senha,$cargo,$imagem,$capa){
+                    $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` VALUES (null,?,?,?,?,?,?) ");
+                    $sql->execute(array($user,$nome,$senha,$cargo,$imagem,$capa));
         
                 }
 

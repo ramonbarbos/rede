@@ -9,6 +9,7 @@
     define('NOME_SITE','Rede Social');
     define('INCLUDE_PATH','http://localhost/rede/');
     define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
+    define('INCLUDE_PATH_PAINEL_USUARIO',INCLUDE_PATH_PAINEL.'usuario/');
     define('BASE_DIR_PAINEL',__DIR__.'/painel');
 
     #VARIAVEIS DO BANCO DE DADOS

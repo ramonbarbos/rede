@@ -54,9 +54,11 @@
                 }else if(isset($_GET['gerenciar'])){
                     header('Location: '.INCLUDE_PATH.'noticia');
 
+                }else if(isset($_GET['user'])){
+                    header('Location: '.INCLUDE_PATH);
+                   
                 }else{
                     header('Location: '.INCLUDE_PATH_PAINEL);
-
                 }
                 die();
             }else{

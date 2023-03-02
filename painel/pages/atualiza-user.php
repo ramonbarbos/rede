@@ -33,16 +33,42 @@
             $senha = @$_POST['password'];
             $imagem = @$_FILES['imagem'];
             $imagem_atual = @$_POST['imagem_atual'];
+            $capa = @$_FILES['capa'];
+            $capa_atual = @$_POST['capa_atual'];
 
             if($imagem['name'] != '' ){
 
                 if(Painel::imagemValida($imagem)){
                     
                     $imagem = Painel::uploadImagem($imagem);  
+                    $capa = $capa_atual ;
+
 
                     Painel::deleteImagem($imagem_atual);
 
-                    $arr = [ 'nome' => $nome, 'password' => $senha, 'img' => $imagem, 'id'=>$id,'nome_tabela'=>'tb_admin.usuarios'];
+                    $arr = ['id'=>$id, 'nome' => $nome, 'password' => $senha, 'img' => $imagem, 'capa'=>$capa,'nome_tabela'=>'tb_admin.usuarios'];
+
+                    Painel::updateCadastro($arr);
+                        Painel::alerta('sucesso','Usuario Atualizada com Imagem!');  
+                  //Atualizar a pagina com os dados novos
+                    $user = Painel::select('tb_admin.usuarios','id=?',array($id));
+                  }else{
+                    Painel::alerta('erro','Formato da imagem nao é valido!');   
+
+                  }
+                
+
+            }else if( $capa['name'] != '' ){
+
+                if(Painel::imagemValida($capa)){
+                    
+                    $imagem = $imagem_atual ;
+ 
+                    $capa = Painel::uploadCapa($capa);
+
+                    Painel::deleteImagem($capa_atual);
+
+                    $arr = ['id'=>$id, 'nome' => $nome, 'password' => $senha, 'img' => $imagem, 'capa'=>$capa,'nome_tabela'=>'tb_admin.usuarios'];
 
                     Painel::updateCadastro($arr);
                         Painel::alerta('sucesso','Usuario Atualizada com Imagem!');  
@@ -56,9 +82,10 @@
 
             }else{
                 $imagem = $imagem_atual ;
+                $capa = $capa_atual ;
 
 
-                $arr = [ 'nome' => $nome, 'password' => $senha, 'img' => $imagem, 'id'=>$id,'nome_tabela'=>'tb_admin.usuarios'];
+                $arr = ['id'=>$id, 'nome' => $nome, 'password' => $senha, 'img' => $imagem, 'capa'=>$capa,'nome_tabela'=>'tb_admin.usuarios'];
 
                 Painel::updateCadastro($arr);
                     Painel::alerta('sucesso','Usuario Atualizada com Imagem!');  
@@ -87,8 +114,16 @@
             <input type="hidden" name="imagem_atual" value="<?php echo $user['img'];?>">
 
         </div>
+
+        <div class="mb-3">
+            <labelclass="form-label">Capa</label>
+            <input type="file" class="form-control"  name="capa">
+            <input type="hidden" name="capa_atual" value="<?php echo $user['capa'];?>">
+
+        </div>
        
-         <a class="btn btn-outline-primary" href="<?php INCLUDE_PATH_PAINEL ?>cadastro">Voltar</a>
+       
+         <a class="btn btn-outline-primary" href="<?php INCLUDE_PATH_PAINEL ?>home">Voltar</a>
         <input type="submit" class="btn btn-outline-dark" value="Atualizar" name="acao">
 
         <input type="hidden" name="id" value="<?php echo $id; ?>" />

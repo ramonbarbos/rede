@@ -22,6 +22,7 @@
             $senha = @$_POST['password'];
             $cargo = @$_POST['cargo'];
             $imagem = @$_FILES['imagem'];
+            $capa = @$_FILES['capa'];
             
             if(Usuario::userExists($login)){
                 //Se não existe ele irá dar erro
@@ -30,7 +31,8 @@
                 //Cadastrar 
                 $usuario =  new Usuario();
                 $imagem = Painel::uploadImagem($imagem);
-                $usuario->cadastrarUsuario($login,$nome,$senha,$cargo,$imagem);
+                $capa = Painel::uploadCapa($capa);
+                $usuario->cadastrarUsuario($login,$nome,$senha,$cargo,$imagem,$capa);
                 Painel::alerta('sucesso','O cadastro foi feito com sucesso!');
 
             } 
@@ -63,6 +65,10 @@
         <div class="mb-3">
             <labelclass="form-label">Imagem</label>
             <input type="file" class="form-control"  name="imagem">
+        </div>
+        <div class="mb-3">
+            <labelclass="form-label">Capa</label>
+            <input type="file" class="form-control"  name="capa">
         </div>
        
          <a class="btn btn-outline-primary" href="<?php INCLUDE_PATH_PAINEL ?>cadastro">Voltar</a>
