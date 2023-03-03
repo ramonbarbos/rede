@@ -1,18 +1,23 @@
 <?php
 
- verificaPermissaoPagina(2);
+ verificaPermissaoPagina(0);
 
  if(isset($_GET['id'])){
     //Captar id da URL
     $id = (int)$_GET['id'];
     //Exibir o usuario no input 
     $noticia = Painel::select('tb_site.noticias','id=?',array($id));
+
+    $user_id = $noticia['id_user'];
+    $usuario_resposavel = Painel::select('tb_admin.usuarios','id=?',array($user_id));
+
+
 }else{
     //Se o ID não for informado irá da a tela de erro 
     Painel::alerta('erro','Voce precisa passar o id!');   
     die();
 }
-
+if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) {
 ?>
 
 
@@ -124,3 +129,4 @@
 
 </div>
 </section>
+<?php }else{     header('Location: '.INCLUDE_PATH.'noticia'); }?>

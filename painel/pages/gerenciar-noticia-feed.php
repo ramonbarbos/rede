@@ -7,7 +7,10 @@ verificaPermissaoPagina(0);
 
 $id = (int)$_GET['gerenciar']; 
 $noticia = Painel::select('tb_site.noticias','id=?',array($id));
+$user_id = $noticia['id_user'];
+$usuario_resposavel = Painel::select('tb_admin.usuarios','id=?',array($user_id));
 
+if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) {
 
 if(isset($_GET['excluir'])){
 
@@ -110,7 +113,10 @@ if(isset($_GET['excluir'])){
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                      
                         <a  type="button" class="btn btn-danger" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticia-feed?excluir=<?php echo $noticia['id']; ?>">Sim</a>
+
+
                       </div>
                     </div>
                   </div>
@@ -123,3 +129,5 @@ if(isset($_GET['excluir'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php }else{     header('Location: '.INCLUDE_PATH.'noticia'); }?>
+
