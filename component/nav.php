@@ -59,7 +59,7 @@
 
               
 
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                 <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class='material-icons'>arrow_drop_down</i>
                   <!-- MENU -->
                       <div class="dropdown-menu">
@@ -74,10 +74,13 @@
                           <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>"> <i style="font-size: 15px; margin-right:10px" class='material-icons'>folder</i>Painel</a>
                      
                      
-                        
-                          <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">
+                          <a class="dropdown-item" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
                           <i style="font-size: 15px; margin-right:10px" class='material-icons'>exit_to_app</i>
                             Sair
+                          </a>
+
+                          <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal" >
+                         
                         </a>
                       
 
@@ -93,25 +96,26 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
- <span aria-hidden="true">&times;</span>
-</button>
+
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Aviso</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      Tem certeza que deseja sair?  
+      </div>
+      <div class="modal-footer">
+      <a class="btn btn-primary" href="<?php echo INCLUDE_PATH ?>?logout">Sim</a>
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">não</button>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="modal-body">
-Tem certeza que deseja sair?
-</div>
-<div class="modal-footer">
-<a class="btn btn-danger" href="<?php echo INCLUDE_PATH ?>?logout">Sim</a>
-<button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-</div>
-</div>
-</div>
-</div>
+
 
 </body>
 </html>

@@ -151,7 +151,7 @@
                 
 
                      
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                     <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="icon-post">  <!--INICIO menu-->
 
                                   <i class='material-icons'>more_horiz</i>
