@@ -14,7 +14,26 @@
 
 
 
-<?php 
+
+<!DOCTYPE html>
+<head>
+
+  <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/feed.css">
+
+</head>
+<body>
+
+<section class="section-primary" >
+
+    <div class="container-post">
+
+    <div class="icon-post">
+      <i class='material-icons'>more_horiz</i>
+    </div>
+    
+    </div>
+
+                <?php 
                      $porPagina = 5;
                       //CONSULTAR
                      $query = "SELECT * FROM `tb_site.noticias` ";
@@ -67,20 +86,16 @@
                       
                       $user_id = $value['id_user'];
                      $usuario_resposavel = Painel::select('tb_admin.usuarios','id=?',array($user_id));
-                  ?>
-
-
-<section style="width: 80%; margin:auto; margin-top:30px; height: 100%;">
+              ?>
 
 
 
 
-    <div class="container" style="background-color:white; padding:10px; margin-bottom:50px; " ><!--INICIO NOTICIAS-->
 
-          
-          
 
-              
+    <div class="content-post" style=" " ><!--INICIO NOTICIAS-->
+
+     
             <div class="usuario d-flex" style="display:flex;  align-items: center;justify-content: space-between;"> <!--INICIO USUARIO-->
                     <div class="usuario-perfil " style="display:flex;  align-items: center;">
 
@@ -90,26 +105,31 @@
                   </div>
                 
 
-                       <!--INICIO menu-->
-                  <div class="btn-group dropstart"> 
-                        <a class="dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                     
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <div class="icon-post">  <!--INICIO menu-->
 
-                        <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
-                        </div>
-                             <?php }else{ ?>
-                            
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                 <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
-                            </div>
+                                  <i class='material-icons'>more_horiz</i>
+                                </div>
 
-                          <?php   }  ?>
-                        
+                                <!-- MENU -->
+                                    
+                                    <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                          
+                                            <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
+                                    </div>
+                                        <?php }else{ ?>
+                                        
+                                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
+                                        </div>
 
-                       
+                                      <?php   }  ?>
+ 
+                       </a><!--final menu-->
 
-                    </div> <!--final menu-->
+                 
 
                 </div><!--FINAL USUARIO-->
 
@@ -134,49 +154,18 @@
 
 
           </div> <!--FIM NOTICIAS-->
-
+        <?php } ?>
 
     </section> <!--FIM TOTAL-->
-    <?php } ?>
 
 
-      <?php
-       $query = "SELECT * FROM `tb_site.noticias` ";
-        if(@$cat['nome'] !=''){
-          $cat['id'] = (int)$cat['id'];
-          $query.="WHERE categoria_id = $cat[id]";
-
-        }
-        $totalPaginas =  MySql::conectar()->prepare($query);
-        $totalPaginas->execute();
-        $totalPaginas = ceil($totalPaginas->rowCount() / $porPagina);
-      ?>
+ 
 
 
-    <div class="container " style="display:flex; justify-content: center;">
-      <ul class="pagination">
-        <?php
-
-        if(!isset($_POST['parametro'])){
-
-            for($i = 1; $i <= $totalPaginas; $i++){
-              $catStr = (@$cat['nome'] != '') ? '/'.$cat['slug'] : '';
-              if($pagina == $i )
-                echo '<li class="page-item"><a class="page-link" href="'.INCLUDE_PATH.'noticia'.$catStr.'?pagina='.$i.'">'.$i.'</a></li>';
-              else
-                echo '<li class="page-item"><a class="page-link" href="'.INCLUDE_PATH.'noticia'.$catStr.'?pagina='.$i.'">'.$i.'</a></li>';
-            }
-
-        }
-
-        
-        ?>
-
-
-      </ul>
-        </div>
-        
+        </body>
+</html>
 
 <?php }else{
     include('page/noticia_single.php');
 } ?>
+

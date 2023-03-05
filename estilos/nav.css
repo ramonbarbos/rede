@@ -115,7 +115,7 @@
     transition: ease-in-out 0.1s;
   }
 
-  .dropdown-toggle::after {
+.nav__right.dropdown-toggle::after {
     content: none;
 }
 .dropdown-menu.show{

@@ -4,7 +4,7 @@
 
 
 verificaPermissaoPagina(0);
-
+if(isset($_GET['gerenciar']) || isset($_GET['gerenciar&excluir']))
 $id = (int)$_GET['gerenciar']; 
 $noticia = Painel::select('tb_site.noticias','id=?',array($id));
 $user_id = $noticia['id_user'];
@@ -114,7 +114,7 @@ if(isset($_GET['excluir'])){
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                       
-                        <a  type="button" class="btn btn-danger" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticia-feed?excluir=<?php echo $noticia['id']; ?>">Sim</a>
+                        <a  type="button" class="btn btn-danger" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticia-feed?gerenciar=<?php echo $noticia['id']; ?>&excluir=<?php echo $noticia['id']; ?>">Sim</a>
 
 
                       </div>
