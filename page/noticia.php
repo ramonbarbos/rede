@@ -1,6 +1,6 @@
 
 <?php 
-  $url = explode('/',$_GET['url']);
+  @$url = explode('/',$_GET['url']);
   if(!isset($url[2]))
   {
   $cat = MySql::conectar()->prepare("SELECT * FROM `tb_site.categoria` WHERE slug = ?");
@@ -11,61 +11,12 @@
 ?>
 
 
-<nav class="navbar justify-content-between" style="background-color: #329da8; height: 90px;color:white">
-
-    <div class="container">
-
-        
-              <form >
-                        <select class="form-control mt-2"  name="categoria">
 
 
-                        <option value=""  selected="">Todas as categorias</option>
-
-                        <?php
-                            $categorias = Painel::selectAll('tb_site.categoria');
-                            foreach($categorias as $key => $value) {
-
-                        ?>
-                          <option <?php if($value['slug'] == @$url[1]) echo 'selected'; ?> value="<?php echo $value['slug'] ?>"><?php echo $value['nome']; ?></option>
-                          
-                          <?php } ?>
-                      
-                      
-                        </select>
-
-                    </form>
-
-                    
-                              
-
-
-                  <?php 
-                      
-                      if(@$cat['nome'] ==''){ 
-                        echo '<a class="navbar-brand">Feed</a>';
-                      }else{
-                        echo '<a class="navbar-brand">'.$cat['nome'].'</a>';
-
-                      }
-                    
-                    ?>
-
-                <form  method="post">
-                          <input class="form-control mt-2" type="text" name="parametro" placeholder="O que deseja procurar?" aria-label="Search">
-                           
-                    </form>
-
-
-
-    </div>
-
-</nav>
-<a type="button" style="background-color:#329da8;color:white;" class="btn btn-lg btn-block mt-5 mb-5" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">Adicionar</a>
 
 <?php 
                      $porPagina = 5;
-
+                      //CONSULTAR
                      $query = "SELECT * FROM `tb_site.noticias` ";
                      if(@$cat['nome'] !=''){
                        $query.="WHERE categoria_id = $cat[id]";

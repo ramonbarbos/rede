@@ -22,7 +22,9 @@ include('config.php');
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/style-usuario.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <!--ICON GOOGLE-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <!--jQuery -->
 
     <script src="<?php echo INCLUDE_PATH?>js/jquery-3.6.3.js"></script>
@@ -37,7 +39,7 @@ include('config.php');
      <div class="container-principal" style="background-color:#f2f2f2; height: 100%;">
    
    <?php
-      $url = isset($_GET['url']) ? $_GET['url'] : 'home'; //Buscando a pagina home
+      $url = isset($_GET['url']) ? $_GET['url'] : 'noticia'; //Buscando a pagina home
 
       if(file_exists('page/'.$url.'.php')){
         include('page/'.$url.'.php');
@@ -52,7 +54,7 @@ include('config.php');
             include('page/404.php');
             }
       }else{
-				include('page/home.php');
+				include('page/noticia.php');
 			}
 
       }
