@@ -75,6 +75,7 @@
   .nav__right {
     display: flex;
     align-items: center;
+    
   }
   
   .avatar {
@@ -83,13 +84,17 @@
     margin-right: 20px;
     border-radius: 50px;
     padding: 5px 10px;
+    
   }
   
   .avatar:hover {
     background: #f1f2f6;
     transition: ease-in-out 0.1s;
+    text-decoration: none;
+    
   }
-  
+
+
   .avatar__img {
     height: 30px;
     width: 30px;
@@ -115,7 +120,7 @@
     transition: ease-in-out 0.1s;
   }
 
-.nav__right.dropdown-toggle::after {
+.nav-link.dropdown-toggle::after {
     content: none;
 }
 .dropdown-menu.show{

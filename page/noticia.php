@@ -27,10 +27,55 @@
 
     <div class="container-post">
 
-    <div class="icon-post">
-      <i class='material-icons'>more_horiz</i>
-    </div>
-    
+       <div class="post-1">
+            <div class="content-img">
+                      <?php if(Painel::logado() == false){ ?>
+                        <div class="usuario-perfil" >
+                          <img  src="<?php echo INCLUDE_PATH; ?>img/user.png" alt="Card image cap"  >
+                        </div>
+                        <?php }else{ ?>
+                          <div class="usuario-perfil" >
+                            <a  href="<?php echo INCLUDE_PATH; ?>usuario_single?user=<?php echo $_SESSION['user'];?>">
+                              <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $_SESSION['img'];?>" alt="Card image cap"  >
+                            </a>
+                          </div>
+                          <?php } ?>
+            
+            </div>
+                <a class="btn-add" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">
+                 
+                  <?php if(Painel::logado() == false){ ?>
+                    <span>No que voce está pensando?</span>
+                    <?php }else{ ?>
+                    <span>No que voce está pensando, <?php echo   substr($_SESSION['nome'],0,7); ?>?</span>
+                    <?php } ?>
+                  
+                  
+                </a>
+       </div>
+       <div class="line"></div>
+
+          <div class="post-2">
+
+              <a class="buttonAdd" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar" >
+
+                <div class="icon-cam">
+                 <i class='material-icons'>videocam</i>
+                </div>
+                <span>Video</span>
+
+                  </a>
+
+              <a class="buttonAdd" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">
+                <div class="icon-photo">
+                 <i class='material-icons'>photo_library</i>
+                </div>
+                <span>Foto</span>
+
+                  </a>
+             
+          </div>
+
     </div>
 
                 <?php 
@@ -93,7 +138,7 @@
 
 
 
-    <div class="content-post" style=" " ><!--INICIO NOTICIAS-->
+    <div class="content-post"  ><!--INICIO NOTICIAS-->
 
      
             <div class="usuario d-flex" style="display:flex;  align-items: center;justify-content: space-between;"> <!--INICIO USUARIO-->
@@ -156,7 +201,7 @@
           </div> <!--FIM NOTICIAS-->
         <?php } ?>
 
-    </section> <!--FIM TOTAL-->
+</section> <!--FIM TOTAL-->
 
 
  

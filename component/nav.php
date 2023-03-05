@@ -48,7 +48,7 @@
            <span><strong>User</strong></span>
            <?php }else{  ?>
            <img class='avatar__img' src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $_SESSION['img']; ?>" alt="">
-           <span><strong><?php echo $_SESSION['nome']; ?></strong></span>
+           <span><strong><?php  echo substr($_SESSION['nome'],0,7); ?></strong></span>
 
            <?php }  ?>
         </a>
@@ -57,11 +57,12 @@
             <a href="#"><i class='material-icons'>messenger</i></a>
             <a href="#"><i class='material-icons'>notifications</i></a>
 
-               <li class="nav-item dropdown">
+              
 
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class='material-icons'>arrow_drop_down</i>
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                  <i class='material-icons'>arrow_drop_down</i>
                   <!-- MENU -->
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <div class="dropdown-menu">
                      
                         <?php  if(Painel::logado() == false){  ?>
                           <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL; ?>usuario_single?user">
@@ -83,7 +84,8 @@
                       </div>
               
                  </a>
-              </li>
+              
+              
          </div>
       </div>
     
