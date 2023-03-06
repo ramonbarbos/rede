@@ -75,7 +75,7 @@
                   ?>
 	<section id="content-feed" >	
 
-	<div id="container-feed" class="container"><!--INICIO NOTICIAS-->
+	<div id="container-feed" ><!--INICIO NOTICIAS-->
 
 
 				
@@ -91,16 +91,29 @@
                   </div>
                 
 
-                       <!--INICIO menu-->
-                  <div class="btn-group dropstart"> 
-                        <a class="dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
-                        </div>
+				  <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="icon-post">  <!--INICIO menu-->
 
-                    </div> <!--final menu-->
+                                  <i class='material-icons'>more_horiz</i>
+                                </div>
+
+                                <!-- MENU -->
+                                    
+                                    <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                          
+                                            <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
+                                    </div>
+                                        <?php }else{ ?>
+                                        
+                                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
+                                        </div>
+
+                                      <?php   }  ?>
+ 
+                       </a><!--final menu-->
+
 
                 </div><!--FINAL USUARIO-->
 

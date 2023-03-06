@@ -210,7 +210,5 @@
         </body>
 </html>
 
-<?php }else{
-    include('page/noticia_single.php');
-} ?>
+<?php }else{   include('page/noticia_single.php');}  ?>
 
