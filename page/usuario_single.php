@@ -81,8 +81,8 @@
 				
 
 			 
-                        
-                <div class="usuario d-flex" style="display:flex;  align-items: center;justify-content: space-between;"> <!--INICIO USUARIO-->
+                        <!--INICIO USUARIO-->
+                <div class="usuario" style="display:flex;  align-items: center;justify-content: space-between;"> 
                     <div class="usuario-perfil " style="display:flex;  align-items: center;">
 
                       <a href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap" style="width: 50px; height: 50px;border-radius: 30px;" > </a>

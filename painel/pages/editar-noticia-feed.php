@@ -73,7 +73,7 @@ if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] ==
 
                Painel::updateCadastro($arr);
                    Painel::alerta('sucesso','Noticia Atualizada!');  
-                   header('Location: '.INCLUDE_PATH.'noticia');
+                  // header('Location: '.INCLUDE_PATH.'noticia');
 
                  $noticia = Painel::select('tb_site.noticias','id=?',array($id));
                 }
