@@ -17,7 +17,8 @@
 
 <!DOCTYPE html>
 <head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/feed.css">
 
 </head>
@@ -142,7 +143,7 @@
   <div class="usuario" >
           <div class="usuario-perfil">
 
-            <a href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
+            <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
                <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
            </a>
 
@@ -153,9 +154,9 @@
         </div>
       
 
-           
+           <!--INICIO menu-->
            <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <div class="icon-post">  <!--INICIO menu-->
+                      <div class="icon-post">  
 
                         <i class='material-icons'>more_horiz</i>
                       </div>

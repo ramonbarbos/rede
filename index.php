@@ -19,7 +19,6 @@ include('config.php');
 
     <!--CSS -->
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/style.css">
-    <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/style-usuario.css">
     <!-- Bootstrap CSS -->
     
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>_bootstrap/css/bootstrap.css">

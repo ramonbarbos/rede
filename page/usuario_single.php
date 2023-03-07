@@ -34,14 +34,23 @@
 	$post = $post->fetchAll();
 ?>
 
-
-
+	<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/style-usuario.css">
+		<link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/feed.css">
+	
+	</head>
+	<body>
 
 	<div id="content-perfil" ><!--PERFIL-->
 		
 		<div id="perfil" class="">
 
-			      <div class="capa-img"><img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $user_info['capa'] ?>" alt="Card image cap"></div>
+			      <div class="capa-img">
+					<img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $user_info['capa'] ?>" alt="Card image cap">
+				</div>
 
 				<div class="content-card">
 
@@ -65,6 +74,8 @@
 		
 	</div><!--FIM DO PERFIL-->
 
+	<section class="section-primary"  >
+
 	<?php 
                     foreach($post as $key => $value) {
                      
@@ -73,70 +84,81 @@
 						
                      $usuario_resposavel = Painel::select('tb_admin.usuarios','id=?',array($user_id));
                   ?>
-	<section id="content-feed" >	
-
-	<div id="container-feed" ><!--INICIO NOTICIAS-->
 
 
+	<div class="content-post"  ><!--INICIO NOTICIAS-->
+
+						
 				
 
 			 
                         <!--INICIO USUARIO-->
-                <div class="usuario" style="display:flex;  align-items: center;justify-content: space-between;"> 
-                    <div class="usuario-perfil " style="display:flex;  align-items: center;">
+                <div class="usuario" >
 
-                      <a href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap" style="width: 50px; height: 50px;border-radius: 30px;" > </a>
+                    <div class="usuario-perfil" >
 
-                      <h6 style="margin-left:10px" ><?php echo @$usuario_resposavel['nome'];?></h6>
+                      <a href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 	
+					  	<img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+					 </a>
+
+                     <div class="info-usuario">
+						<h6  ><?php echo @$usuario_resposavel['nome'];?></h6>
+						<p class=""><?php echo date('d/m/Y',strtotime($value['data']));?></p>
+					</div>
                   </div>
                 
 
-				  <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="icon-post">  <!--INICIO menu-->
+				    <!--INICIO menu-->
+					<a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="icon-post">  
 
-                                  <i class='material-icons'>more_horiz</i>
-                                </div>
+                        <i class='material-icons'>more_horiz</i>
+                      </div>
 
-                                <!-- MENU -->
-                                    
-                                    <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                          
-                                            <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
-                                    </div>
-                                        <?php }else{ ?>
-                                        
-                                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
-                                        </div>
+                      <!-- MENU -->
+                          
+                          <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
+                          </div>
+                              <?php }else{ ?>
+                              
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
+                              </div>
 
-                                      <?php   }  ?>
- 
-                       </a><!--final menu-->
+                            <?php   }  ?>
+
+             </a><!--final menu-->
 
 
                 </div><!--FINAL USUARIO-->
 
-                <div class=" mt-4 mb-4" style="width: 100%;background-color:white;display:flex;">
+							<!--INICIO NOTICIAS-->
+					<div class="card-post" >
 
-                
-               
-                <img class="card-img-top" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap" style="width: 50%; height: 260px;" >      
+								
+							<div class="info-card">
+							<p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
+							<a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Ver mais</a>
+							</div>
+							<div class="img-card">
+								<img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >
+							</div>     
 
-                  <div class="card-body">
+								<div class="card-body">
 
-                    <h5 class="card-title"><?php echo $value['titulo'];?></h5>
+								
 
-                    <h6 class="card-subtitle mb-2 text-muted"><?php echo date('d/m/Y',strtotime($value['data']));?></p>
-                    
-                    <p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
-
-                    <a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Link da Noticia</a>
-                  </div>
-                </div>
-			
+								</div>
+							</div>
 
 
-	</div>			
+
+				</div> <!--FIM NOTICIAS-->
+	<?php }	?>			
 	</section>
-	<?php }	?>
+		
+	</body>
+	</html>
