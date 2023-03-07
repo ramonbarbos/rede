@@ -229,9 +229,31 @@
         <p><?php echo $info['comentario']; ?></p>
 
         <?php } }else{ echo 'sem comentarios';}?>
+       
+
+            
+<!--INICIO USUARIO-->
+  <div class="usuario" >
+          <div class="usuario-perfil">
+
+            <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
+               <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+           </a>
+
+               
         <form  method="post">
           <input type="text" name="comentario" placeholder="Digite um comentario">
         </form>
+       
+          
+        </div>
+      
+
+         
+
+      </div><!--FINAL USUARIO-->
+
+
       </div> <!--FIM NOTICIAS-->
    
 
