@@ -201,11 +201,39 @@
           </div>
         </div>
 
+        <?php  
+      if(isset($_POST['comentario'])){
+        $id_noticia = $value['id'];
+        $nome_user = $usuario_resposavel['nome'];
+        $comentario = $_POST['comentario'];
+        
+          if($comentario == ''){
+              echo 'campo vazio!';
+          }else{
+            $arr = [ 'id_noticia'=>$id_noticia, 'nome_user'=>$nome_user,'comentario' => $comentario,'data'=>date('Y-m-d'),
+              'nome_tabela'=>'tb_site.comentario'];
+              Painel::insert($arr);
+              echo  'adicionado';
+          }
+      }
+       
+        $coment = MySql::conectar()->prepare("SELECT * FROM `tb_site.comentario` WHERE id_noticia = ?");
+        $coment->execute(array($value['id']));
+        $info_coment = $coment->fetchAll();
+        
+          if(@$info_coment['comentario'] == ''){
+          foreach($info_coment as $key => $info) {
 
+       ?>
+       <h6>Publicado por: <?php echo $info['nome_user']; ?></h6>
+        <p><?php echo $info['comentario']; ?></p>
 
+        <?php } }else{ echo 'sem comentarios';}?>
+        <form  method="post">
+          <input type="text" name="comentario" placeholder="Digite um comentario">
+        </form>
       </div> <!--FIM NOTICIAS-->
-
-
+   
 
         <?php } ?>
 

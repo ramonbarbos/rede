@@ -13,9 +13,11 @@
       </a>
       <div class='nav__search'>
         <i class="material-icons">search</i>
+
         <form  method="post" >
         <input type='text' name="parametro"  placeholder="Perquisar no Facebook"/>
         </form>
+        
       </div>
     </div> 
    
