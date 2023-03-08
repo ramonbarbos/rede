@@ -201,6 +201,102 @@
           </div>
         </div>
 
+    
+        <?php echo '#publicacaoUser?id='.$value['id']; ?>
+    
+            <a type="submit" class="dropdown-item" data-bs-toggle="modal" href="<?php echo '#post';?>"  role="button" >
+                Comentar
+            </a>
+       
+
+
+
+      </div> <!--FIM NOTICIAS-->
+
+        <?php } ?>
+
+</section> <!--FIM TOTAL-->
+
+   
+<!-- Modal -->
+
+<?php  ?>
+
+<div class="modal fade" id="<?php echo 'post'?>" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Publicação de USER</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    
+            
+
+<div class="content-post"  ><!--INICIO NOTICIAS-->
+
+<!--INICIO USUARIO-->
+  <div class="usuario" >
+          <div class="usuario-perfil">
+
+            <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
+               <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+           </a>
+
+            <div class="info-usuario">
+              <h6  ><?php echo @$usuario_resposavel['nome'];?></h6>
+              <p class=""><?php echo date('d/m/Y',strtotime($value['data']));?></p>
+            </div>
+        </div>
+      
+
+           <!--INICIO menu-->
+           <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="icon-post">  
+
+                        <i class='material-icons'>more_horiz</i>
+                      </div>
+
+                      <!-- MENU -->
+                          
+                          <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
+                          </div>
+                              <?php }else{ ?>
+                              
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
+                              </div>
+
+                            <?php   }  ?>
+
+             </a><!--final menu-->
+
+       
+
+      </div><!--FINAL USUARIO-->
+
+    <!--INICIO NOTICIAS-->
+      <div class="card-post" >
+
+      
+      <div class="info-card">
+        <p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
+        <a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Ver mais</a>
+      </div>
+        <div class="img-card">
+          <img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >
+         </div>     
+
+          <div class="card-body">
+
+           
+
+          </div>
+        </div>
+
         <?php  
       if(isset($_POST['comentario'])){
         $id_noticia = $value['id'];
@@ -244,7 +340,10 @@
         <form  method="post">
           <input type="text" name="comentario" placeholder="Digite um comentario">
         </form>
+        <a class="dropdown-item" data-bs-toggle="modal" href="#publicacaoUser" role="button">
        
+                            Comentar
+        </a>
           
         </div>
       
@@ -255,13 +354,14 @@
 
 
       </div> <!--FIM NOTICIAS-->
-   
 
-        <?php } ?>
-
-</section> <!--FIM TOTAL-->
-
-
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#publicacaoUser" data-bs-toggle="modal">não</button>
+      </div>
+    </div>
+  </div>
+</div>
  
 
 
