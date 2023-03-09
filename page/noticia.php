@@ -370,18 +370,30 @@
                         foreach($info_coment as $key => $info) {
 
                   ?>
-                  <div class="content-coment">
-                    <div class="content-user-coment">
-                      <a class="" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo $info['id_user'];?>"> 
-                        <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
-                    </a>
-                  </div>
-                  <div class="coment">
-                    <h6><b><?php echo $info['nome_user']; ?></b></h6>
-                    <p><?php echo $info['comentario']; ?></p>
+                  <div class="container-coment">
 
-                  </div>
-                    <?php } }else{ echo 'sem comentarios';}?>
+                      <div class="content-coment">
+                            <div class="content-user-coment">
+                                  <a class="" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo $info['id_user'];?>"> 
+                                    <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+                                </a>
+                              </div>
+                              <div class="coment">
+                                <h6><b><?php echo $info['nome_user']; ?></b></h6>
+                                <p><?php echo $info['comentario']; ?></p>
+
+                          </div>
+                        <?php } }else{ echo 'sem comentarios';}?>
+                        </div>
+                        <div class="form-comentario" >
+                             <a class="" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo $info['id_user'];?>"> 
+                                    <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+                                </a>
+                              <form  method="post">
+                                    <input type="text" name="comentario" placeholder="Escreva um comentario...">
+                              </form>
+                        </div>
+                 
               </div>
         </div>
 

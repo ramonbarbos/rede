@@ -246,6 +246,11 @@ padding: 0 12px 0 12px;
 
 .comentarios-container{
 }
+
+.container-coment{
+ display: flex;
+ flex-direction: column ;
+}
 .content-coment{
 width: 100%;
 display: flex;
@@ -261,7 +266,8 @@ border-radius: 30px;
 
 }
 .coment{
-background-color: rgb(232, 232, 232);
+  background-color: #f1f2f6;
+
 width: 100%;
 border-radius: 20px;
 padding: 10px 10px 10px 10px;
@@ -272,6 +278,28 @@ margin-bottom: 3px;
 }
 .coment p{
 font-size: 13px;
+color:#3f4040;
+}
+
+.form-comentario{
+  display: flex;
+  margin-top: 15px;
+}
+.form-comentario  form{
+  display: flex;
+  align-items: center;
+  background-color: #f1f2f6;
+  padding: 15px;
+  border-radius: 30px;
+  height: 40px;
+  width: 100%;
+  margin-left: 5px;
+}
+.form-comentario  input{
+  outline: none;
+  border: none;
+  background: transparent;
+  padding: 0 10px;
 }
 
 @media only screen and (max-width:980px) {
