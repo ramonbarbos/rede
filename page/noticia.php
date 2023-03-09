@@ -20,6 +20,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo INCLUDE_PATH?>estilos/feed.css">
+  <script src="<?php echo INCLUDE_PATH?>js/jquery-3.6.3.js"></script>
 
 </head>
 <body>
@@ -201,57 +202,35 @@
           </div>
         </div>
 
-        <?php  
-      if(isset($_POST['comentario'])){
-        $id_noticia = $value['id'];
-        $nome_user = $usuario_resposavel['nome'];
-        $comentario = $_POST['comentario'];
-        
-          if($comentario == ''){
-              echo 'campo vazio!';
-          }else{
-            $arr = [ 'id_noticia'=>$id_noticia, 'nome_user'=>$nome_user,'comentario' => $comentario,'data'=>date('Y-m-d'),
-              'nome_tabela'=>'tb_site.comentario'];
-              Painel::insert($arr);
-              echo  'adicionado';
-          }
-      }
-       
-        $coment = MySql::conectar()->prepare("SELECT * FROM `tb_site.comentario` WHERE id_noticia = ?");
-        $coment->execute(array($value['id']));
-        $info_coment = $coment->fetchAll();
-        
-          if(@$info_coment['comentario'] == ''){
-          foreach($info_coment as $key => $info) {
-
-       ?>
-       <h6>Publicado por: <?php echo $info['nome_user']; ?></h6>
-        <p><?php echo $info['comentario']; ?></p>
-
-        <?php } }else{ echo 'sem comentarios';}?>
-       
+     
 
             
-<!--INICIO USUARIO-->
-  <div class="usuario" >
-          <div class="usuario-perfil">
+      <!--INICIO AÇÃO-->
+        <div class="acao-post" style="">
+            <div class="content-acao" style=" ">
 
-            <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
-               <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
-           </a>
+                  <a class="btn-curtir"   >
+                            <i class='material-icons' >thumb_up</i>
+                             <span>Curtir</span> 
+                  </a>
 
-               
-        <form  method="post">
-          <input type="text" name="comentario" placeholder="Digite um comentario">
-        </form>
-       
-          
-        </div>
-      
+                    <a class="btn-comentar" data-bs-toggle="modal" href="#feedUser" role="button">
+                            <i  class='material-icons'>chat</i>
+                              <span>Comentar</span> 
+                  </a>
+                  <a class="btn-repost" style=" ">
+                            <i  class='material-icons'>share</i>
+                              <span>Compartilhar</span> 
+                  </a>
+                          
+   
+            
+            </div>
+           
 
          
 
-      </div><!--FINAL USUARIO-->
+        </div><!--FINAL AAÇÃO-->
 
 
       </div> <!--FIM NOTICIAS-->
@@ -263,6 +242,160 @@
 
 
  
+<!-- Modal -->
+
+
+<div class="modal fade" id="feedUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Aviso</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+<!--INICIO USUARIO-->
+  <div class="usuario" >
+          <div class="usuario-perfil">
+
+            <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
+               <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+           </a>
+
+            <div class="info-usuario">
+              <h6  ><?php echo @$usuario_resposavel['nome'];?></h6>
+              <p class=""><?php echo date('d/m/Y',strtotime($value['data']));?></p>
+            </div>
+        </div>
+      
+
+           <!--INICIO MENU MODAL-->
+           <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class="icon-post">  
+
+                        <i class='material-icons'>more_horiz</i>
+                      </div>
+
+                      <!-- MENU -->
+                          
+                          <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
+                          </div>
+                              <?php }else{ ?>
+                              
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
+                              </div>
+
+                            <?php   }  ?>
+
+             </a><!--final menu-->
+
+       
+
+      </div><!--FINAL USUARIO-->
+
+    <!--INICIO NOTICIAS-->
+      <div class="card-post" >
+
+      
+      <div class="info-card">
+        <p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
+        <a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Ver mais</a>
+      </div>
+        <div class="img-card">
+          <img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >
+         </div>     
+
+          <div class="card-body">
+
+           
+
+          </div>
+        </div>
+
+     
+
+            
+      <!--INICIO AÇÃO-->
+        <div class="acao-post" style="">
+            <div class="content-acao" style=" ">
+
+                  <a class="btn-curtir"   >
+                            <i class='material-icons' >thumb_up</i>
+                             <span>Curtir</span> 
+                  </a>
+
+                    <a class="btn-comentar" >
+                            <i  class='material-icons'>chat</i>
+                              <span>Comentar</span> 
+                  </a>
+                  <a class="btn-repost" style=" ">
+                            <i  class='material-icons'>share</i>
+                              <span>Compartilhar</span> 
+                  </a>
+                                  
+            </div>
+
+        </div><!--FINAL AAÇÃO-->
+
+        <div class="comentarios-container">
+              
+              <?php  
+                  if(isset($_POST['comentario'])){
+                    $id_noticia = $value['id'];
+                    $id_user = $usuario_resposavel['id'];
+                    $nome_user = $usuario_resposavel['nome'];
+                    $img_user = $usuario_resposavel['img'];
+                    $comentario = $_POST['comentario'];
+                    
+                      if($comentario == ''){
+                          echo 'campo vazio!';
+                      }else{
+                        $arr = [ 'id_noticia'=>$id_noticia, 'id_user'=>id_user,'nome_user'=>nome_user,'img_user'=>img_user,'comentario' => $comentario,'data'=>date('Y-m-d'),
+                          'nome_tabela'=>'tb_site.comentario'];
+                          Painel::insert($arr);
+                          echo  'adicionado';
+                      }
+                  }
+                    #BUSCANDO OS COMENTARIOS DO POST PELO ID DA NOTICIA
+                    $coment = MySql::conectar()->prepare("SELECT * FROM `tb_site.comentario` WHERE id_noticia = ?");
+                    $coment->execute(array($value['id']));
+                    $info_coment = $coment->fetchAll();
+                    
+                    
+                      if(isset($info_coment['comentario']) == ''){
+                        foreach($info_coment as $key => $info) {
+
+                  ?>
+                  <div class="content-coment">
+                    <div class="content-user-coment">
+                      <a class="" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo $info['id_user'];?>"> 
+                        <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+                    </a>
+                  </div>
+                  <div class="coment">
+                    <h6><b><?php echo $info['nome_user']; ?></b></h6>
+                    <p><?php echo $info['comentario']; ?></p>
+
+                  </div>
+                    <?php } }else{ echo 'sem comentarios';}?>
+              </div>
+        </div>
+
+
+      </div> <!--FIM NOTICIAS-->
+   
+     
+       
+   
+      </div>
+     
+  </div>
+</div>
+
 
 
         </body>
