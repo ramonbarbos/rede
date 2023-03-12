@@ -214,7 +214,7 @@
                              <span>Curtir</span> 
                   </a>
 
-                    <a class="btn-comentar" data-bs-toggle="modal" href="#feedUser" role="button">
+                    <a class="btn-comentar" onclick="listFeed(<?php echo $value['id']?>)" data-bs-toggle="modal" href="#feedUser" role="button">
                             <i  class='material-icons'>chat</i>
                               <span>Comentar</span> 
                   </a>
@@ -254,66 +254,41 @@
       </div>
       <div class="modal-body">
         
-<!--INICIO USUARIO-->
-  <div class="usuario" >
-          <div class="usuario-perfil">
+        <div id="idFeed" ></div>
 
-            <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$usuario_resposavel['id'];?>"> 
-               <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
-           </a>
+        <!--INICIO USUARIO-->
+          <div class="usuario" >
+                  <div class="usuario-perfil">
 
-            <div class="info-usuario">
-              <h6  ><?php echo @$usuario_resposavel['nome'];?></h6>
-              <p class=""><?php echo date('d/m/Y',strtotime($value['data']));?></p>
-            </div>
-        </div>
+                    <a class="pelicula-perfil-user" href=""> 
+                     
+                     <span class="perfil-user" id="imgUser" ></span>
+
+                  </a>
+
+                    <div class="info-usuario">
+                      <h6  ><span id="nomeUser"  ></span></h6>
+                      <p class=""><span id="dataFeed" ></span></p>
+                    </div>
+                </div>
       
 
-           <!--INICIO MENU MODAL-->
-           <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <div class="icon-post">  
-
-                        <i class='material-icons'>more_horiz</i>
-                      </div>
-
-                      <!-- MENU -->
-                          
-                          <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
-                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                
-                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
-                          </div>
-                              <?php }else{ ?>
-                              
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
-                              </div>
-
-                            <?php   }  ?>
-
-             </a><!--final menu-->
 
        
 
       </div><!--FINAL USUARIO-->
 
-    <!--INICIO NOTICIAS-->
-      <div class="card-post" >
+           <!--INICIO NOTICIAS-->
+         <div class="card-post" >
+          
+                <div class="info-card">
+                  <span id="conteudoFeed" ></span>
+                </div>
 
-      
-      <div class="info-card">
-        <p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
-        <a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Ver mais</a>
-      </div>
-        <div class="img-card">
-          <img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >
-         </div>     
-
-          <div class="card-body">
-
-           
-
-          </div>
+                <div class="img-card">
+                    <span id="capaFeed" ></span>
+                </div>     
+         
         </div>
 
      
@@ -348,13 +323,13 @@
                     $id_noticia = $value['id'];
                     $id_user = $usuario_resposavel['id'];
                     $nome_user = $usuario_resposavel['nome'];
-                    $img_user = $usuario_resposavel['img'];
+                     $img_user = $usuario_resposavel['img'];
                     $comentario = $_POST['comentario'];
                     
                       if($comentario == ''){
                           echo 'campo vazio!';
                       }else{
-                        $arr = [ 'id_noticia'=>$id_noticia, 'id_user'=>id_user,'nome_user'=>nome_user,'img_user'=>img_user,'comentario' => $comentario,'data'=>date('Y-m-d'),
+                        $arr = [ 'id_noticia'=>$id_noticia, 'id_user'=>$id_user,'nome_user'=>$nome_user,'img_user'=>$img_user,'comentario' => $comentario,'data'=>date('Y-m-d'),
                           'nome_tabela'=>'tb_site.comentario'];
                           Painel::insert($arr);
                           echo  'adicionado';
@@ -374,7 +349,7 @@
 
                       <div class="content-coment">
                             <div class="content-user-coment">
-                                  <a class="" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo $info['id_user'];?>"> 
+                                  <a class=""> 
                                     <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
                                 </a>
                               </div>
@@ -408,6 +383,7 @@
   </div>
 </div>
 
+<script src="js/custom.js"></script>
 
 
         </body>

@@ -42,7 +42,7 @@
 
 
     <div class="nav__right">
-        <a href='<?php echo INCLUDE_PATH; ?>usuario_single?user=<?php echo $_SESSION['user']?>' class="avatar">
+        <a href='<?php echo INCLUDE_PATH; ?>usuario_single?user=<?php echo @$_SESSION['user']?>' class="avatar">
            
            
             <?php  if(Painel::logado() == false){  ?>
