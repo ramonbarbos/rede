@@ -321,19 +321,8 @@
             
                   <div class="container-coment">
 
-                      <div class="content-coment">
-                            <div class="content-user-coment">
-                                  <a class=""> 
-                                    <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
-                                </a>
-                              </div>
-                              <div class="coment">
-                                <h6><b>User</b></h6>
-                                <p>oi</p>
+                        <div id="idContent" class="content-coment"></div>
 
-                          </div>
-
-                        </div>
                         <div class="form-comentario" >
                              <a class="" href=""> 
                                     <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$_SESSION['img'];?>" alt="Card image cap"  >
@@ -343,6 +332,7 @@
                               <form id="cad-comentario-form" >
                                     <input type="text" name="comentario" placeholder="Escreva um comentario...">
                                     <input type="hidden"  name="id_user" value="<?php echo @$_SESSION['id'] ?>"  />
+                                    <input type="hidden"  name="nome_user" value="<?php echo @$_SESSION['nome'] ?>"  />
                                     <input type="hidden"  name="img_user" value="<?php echo @$_SESSION['img'];?>"  />
                                     <input type="hidden"  name="data" value="<?php echo date('Y-m-d') ?>"  />
                                     <input type="submit"  style="visibility: hidden;" value="enviar"  />

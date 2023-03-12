@@ -23,7 +23,6 @@ async function listFeed(id){
         document.getElementById('imgUser').innerHTML = '<img class="" src="./painel/uploads/'+resposta['dados-res'].img +' " alt="Card image cap"  >' ; 
         
 
-
         //INSERINDO COMENTARIOS NA PUBLICAÇÃO
         const cadForm = document.getElementById("cad-comentario-form");
 
@@ -43,9 +42,25 @@ async function listFeed(id){
 
             const respostaComentario = await dadosComentario.json();
             console.log(respostaComentario);
+            document.getElementById('msg').innerHTML = resposta['msg'];
+
 
         })
 
+
+           //CONSULTANDO COMENTARIOS
+           const content = document.querySelector("content-coment");
+
+           const listUsuario = async () => {
+               const dados = await fetch("./class/listComentarios.php?id=" + id);
+               const respostaComent = await dados.text();
+               document.getElementById('idContent').innerHTML = respostaComent;
+
+               const visModal = document.getElementById("feedUser");
+               visModal.show();
+           }
+           
+           listUsuario(); //Carregar na tela
     }
 }
 
