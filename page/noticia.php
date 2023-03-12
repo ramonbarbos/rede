@@ -318,33 +318,7 @@
 
         <div class="comentarios-container">
               
-              <?php  
-                  if(isset($_POST['comentario'])){
-                    $id_noticia = $value['id'];
-                    $id_user = $usuario_resposavel['id'];
-                    $nome_user = $usuario_resposavel['nome'];
-                     $img_user = $usuario_resposavel['img'];
-                    $comentario = $_POST['comentario'];
-                    
-                      if($comentario == ''){
-                          echo 'campo vazio!';
-                      }else{
-                        $arr = [ 'id_noticia'=>$id_noticia, 'id_user'=>$id_user,'nome_user'=>$nome_user,'img_user'=>$img_user,'comentario' => $comentario,'data'=>date('Y-m-d'),
-                          'nome_tabela'=>'tb_site.comentario'];
-                          Painel::insert($arr);
-                          echo  'adicionado';
-                      }
-                  }
-                    #BUSCANDO OS COMENTARIOS DO POST PELO ID DA NOTICIA
-                    $coment = MySql::conectar()->prepare("SELECT * FROM `tb_site.comentario` WHERE id_noticia = ?");
-                    $coment->execute(array($value['id']));
-                    $info_coment = $coment->fetchAll();
-                    
-                    
-                      if(isset($info_coment['comentario']) == ''){
-                        foreach($info_coment as $key => $info) {
-
-                  ?>
+            
                   <div class="container-coment">
 
                       <div class="content-coment">
@@ -354,18 +328,25 @@
                                 </a>
                               </div>
                               <div class="coment">
-                                <h6><b><?php echo $info['nome_user']; ?></b></h6>
-                                <p><?php echo $info['comentario']; ?></p>
+                                <h6><b>User</b></h6>
+                                <p>oi</p>
 
                           </div>
-                        <?php } }else{ echo 'sem comentarios';}?>
+
                         </div>
                         <div class="form-comentario" >
-                             <a class="" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo $info['id_user'];?>"> 
-                                    <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$usuario_resposavel['img'];?>" alt="Card image cap"  >
+                             <a class="" href=""> 
+                                    <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$_SESSION['img'];?>" alt="Card image cap"  >
                                 </a>
-                              <form  method="post">
+
+
+                              <form id="cad-comentario-form" >
                                     <input type="text" name="comentario" placeholder="Escreva um comentario...">
+                                    <input type="hidden"  name="id_user" value="<?php echo @$_SESSION['id'] ?>"  />
+                                    <input type="hidden"  name="img_user" value="<?php echo @$_SESSION['img'];?>"  />
+                                    <input type="hidden"  name="data" value="<?php echo date('Y-m-d') ?>"  />
+                                    <input type="submit"  style="visibility: hidden;" value="enviar"  />
+
                               </form>
                         </div>
                  
