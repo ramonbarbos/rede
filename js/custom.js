@@ -62,15 +62,15 @@ async function listFeed(id){
                const respostaComent = await dados.text();
                document.getElementById('idContent').innerHTML = respostaComent;
 
-               const visModal = document.getElementById("feedUser");
-               visModal.show();
+               //const visModal = document.getElementById("feedUser").show();
+               //visModal.show();
            }
            
            listUsuario(); //Carregar na tela
     }
 }
 
-  //INSERINDO COMENTARIOS NA PUBLICAÇÃO
+  //NOVAS NA PUBLICAÇÃO
   const cadForm = document.getElementById("car-publi-form");
 
     cadForm.addEventListener("submit", async (e) =>{
@@ -86,8 +86,22 @@ async function listFeed(id){
             body:dadosForm
         });
 
+        
         const respostaPubli = await dadosPubli.json();
-        console.log(respostaPubli);
+
+        if(respostaPubli['erro']){
+            document.getElementById('msg').innerHTML ='<div class="alert alert-danger" role="alert">'+respostaPubli['msg']+'</div>'  ;
+            
+                //const visModal = document.getElementById("feedUser");
+              // visModal.show();
+        }else{
+            document.getElementById('msg').innerHTML ='<div class="alert alert-success" role="alert">'+respostaPubli['msg']+'</div>'  ;
+           // document.getElementById("aviso").show();
+                 console.log(respostaPubli);
+        }
+       
+
+       
 
   })
 

@@ -409,10 +409,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Criar publicação</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" onClick="window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
        
+                    <span id="msg" ></span>
+
       <div class="usuario" > <!--INICIO DO FORM-->
 
             <div class="usuario-perfil"> <!--INICIO DO HEADER-->
@@ -448,6 +450,24 @@
 </div>
 
 
+<!-- Modal AVISOS -->
+
+
+<div class="modal fade" id="aviso" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Criar publicação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+        <span id="msg" ></span>
+
+     
+     
+  </div>
+</div>
 
 <script src="js/custom.js"></script>
 

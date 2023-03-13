@@ -44,7 +44,7 @@ if(!empty($dados['conteudo'])){
 
     $retorna = ['erro' => false, 'msg' => 'Publicação cadastrado'];
 }else{
-    $retorna = ['erro' => true, 'msg' => 'Erro ao cadastrar'];
+    $retorna = ['erro' => true, 'msg' => 'Erro ao cadastrar publicação'];
 }
 
 

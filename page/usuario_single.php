@@ -140,20 +140,59 @@
 
 								
 							<div class="info-card">
-							<p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
+									<p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
 							
 							</div>
-							<div class="img-card">
-								<img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >
-							</div>     
 
-								<div class="card-body">
+							<?php if(@$value['capa'] == '') {?>
+
+								<div style="visibility: hidden;"> </div> 
+
+								<?php }else{ ?>
+								<div class="img-card">
+								<img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$value['capa'] ?>" alt="Card image cap"  >
+								</div>  
+
+								<?php } ?>
 
 								
-
-								</div>
 							</div>
 
+		<!--INICIO AÇÃO-->
+		<div class="acao-post" >
+					<div class="content-acao">
+
+                  <a class="btn-curtir"   >
+                            <i class='material-icons' >thumb_up</i>
+                             <span>Curtir</span> 
+                  </a>
+
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <a class="btn-comentar" onclick="listFeed(<?php echo $value['id']?>)" data-bs-toggle="modal"      href="#feedUser" role="button">
+                            <i  class='material-icons'>chat</i>
+                              <span>Comentar</span> 
+                  </a>
+                  <?php }else{ ?>
+                    <a class="btn-comentar" >
+                            <i  class='material-icons'>chat</i>
+                              <span>Comentar</span> 
+                  </a>
+                    <?php } ?>
+
+
+                  <a class="btn-repost" >
+                            <i  class='material-icons'>share</i>
+                              <span>Compartilhar</span> 
+                  </a>
+                          
+   
+            
+            </div>
+           
+
+         
+
+        </div><!--FINAL AAÇÃO-->
 
 
 				</div> <!--FIM NOTICIAS-->
