@@ -141,7 +141,7 @@
 								
 							<div class="info-card">
 							<p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
-							<a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Ver mais</a>
+							
 							</div>
 							<div class="img-card">
 								<img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >

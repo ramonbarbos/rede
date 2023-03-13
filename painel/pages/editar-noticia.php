@@ -45,7 +45,7 @@
 
                     $slug = Painel::generateSlug($titulo);
 
-                    $arr = [ 'categoria_id'=>$categoria,'titulo' => $titulo, 'conteudo' => $conteudo, 'capa' => $imagem, 'id'=>$id,  'slug'=>$slug,'nome_tabela'=>'tb_site.noticias'];
+                    $arr = [ 'id'=>$id,'categoria_id'=>$categoria,'titulo' => $titulo, 'conteudo' => $conteudo, 'capa' => $imagem,   'slug'=>$slug,'nome_tabela'=>'tb_site.noticias'];
 
                     Painel::updateCadastro($arr);
                         Painel::alerta('sucesso','Noticia Atualizada com capa!');  

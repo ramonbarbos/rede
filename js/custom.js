@@ -15,7 +15,12 @@ async function listFeed(id){
         //Feed
        
         document.getElementById('conteudoFeed').innerHTML = resposta['dados-feed'].conteudo;
-        document.getElementById('capaFeed').innerHTML = '<img class="" src="./painel/uploads/'+ resposta['dados-feed'].capa +' " alt="Card image cap"  >' ; 
+        if(resposta['dados-feed'].capa === ''){
+            document.getElementById('capaFeed').innerHTML = '<div class="img-card" style="visibility: hidden; height: 10px;"><img   alt="Card image cap"  > </div>' ;   
+        }else{
+            document.getElementById('capaFeed').innerHTML = '<div class="img-card" ><img src="./painel/uploads/'+ resposta['dados-feed'].capa +' " alt="Card image cap"  >  </div>' ; 
+        }
+       
         document.getElementById('dataFeed').innerHTML = resposta['dados-feed'].data;
 
         //User
@@ -45,6 +50,7 @@ async function listFeed(id){
             document.getElementById('msg').innerHTML = resposta['msg'];
 
 
+
         })
 
 
@@ -63,4 +69,25 @@ async function listFeed(id){
            listUsuario(); //Carregar na tela
     }
 }
+
+  //INSERINDO COMENTARIOS NA PUBLICAÇÃO
+  const cadForm = document.getElementById("car-publi-form");
+
+    cadForm.addEventListener("submit", async (e) =>{
+        e.preventDefault(); //para não recarrecar a pagina
+        console.log("chegou a requisição para ser adicionado")
+
+        const dadosForm =  new FormData(cadForm);
+        dadosForm.append("add", 1)
+        console.log(dadosForm)
+
+        const dadosPubli = await fetch("./class/cadastrarPublicacao.php",{
+            method: "POST",
+            body:dadosForm
+        });
+
+        const respostaPubli = await dadosPubli.json();
+        console.log(respostaPubli);
+
+  })
 

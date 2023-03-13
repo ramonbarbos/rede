@@ -3,7 +3,6 @@
 
 
 
-verificaPermissaoPagina(0);
 if(isset($_GET['gerenciar']) || isset($_GET['gerenciar&excluir']))
 $id = (int)$_GET['gerenciar']; 
 $noticia = Painel::select('tb_site.noticias','id=?',array($id));

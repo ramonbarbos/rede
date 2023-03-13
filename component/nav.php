@@ -55,7 +55,11 @@
            <?php }  ?>
         </a>
         <div class="buttons">
-            <a href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar"><i class='material-icons'>add</i></a>
+        <?php if(isset($_SESSION['user'])){ ?>
+            <a data-bs-toggle="modal" href="#addFeed" role="button"><i class='material-icons'>add</i></a>
+            <?php }else{ ?>
+            <a data-bs-toggle="modal" ><i class='material-icons'>add</i></a>
+            <?php } ?>
             <a href="#"><i class='material-icons'>messenger</i></a>
             <a href="#"><i class='material-icons'>notifications</i></a>
 

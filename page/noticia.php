@@ -44,7 +44,8 @@
                           <?php } ?>
             
             </div>
-                <a class="btn-add" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">
+            <?php if(isset($_SESSION['user'])){ ?>
+                <a class="btn-add" data-bs-toggle="modal" href="#addFeed" role="button">
                  
                   <?php if(Painel::logado() == false){ ?>
                     <span>No que voce está pensando?</span>
@@ -54,12 +55,26 @@
                   
                   
                 </a>
+                <?php }else{ ?>
+                  <a class="btn-add" >
+                 
+                 <?php if(Painel::logado() == false){ ?>
+                   <span>No que voce está pensando?</span>
+                   <?php }else{ ?>
+                   <span>No que voce está pensando, <?php echo   substr($_SESSION['nome'],0,7); ?>?</span>
+                   <?php } ?>
+                 
+                 
+               </a>
+                  <?php } ?>
+
        </div>
        <div class="line"></div>
 
           <div class="post-2">
 
-              <a class="buttonAdd" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar" >
+          <?php if(isset($_SESSION['user'])){ ?>
+              <a class="buttonAdd" data-bs-toggle="modal" href="#addFeed" role="button">
 
                 <div class="icon-cam">
                  <i class='material-icons'>videocam</i>
@@ -68,13 +83,31 @@
 
                   </a>
 
-              <a class="buttonAdd" href="<?php echo INCLUDE_PATH_PAINEL; ?>pages/cadastrar-noticia-feed?adicionar">
+              <a class="buttonAdd" data-bs-toggle="modal" href="#addFeed" role="button">
                 <div class="icon-photo">
                  <i class='material-icons'>photo_library</i>
                 </div>
                 <span>Foto</span>
 
                   </a>
+                  <?php }else{ ?>
+                       <a class="buttonAdd">
+
+                            <div class="icon-cam">
+                            <i class='material-icons'>videocam</i>
+                            </div>
+                            <span>Video</span>
+
+                              </a>
+
+                            <a class="buttonAdd">
+                            <div class="icon-photo">
+                            <i class='material-icons'>photo_library</i>
+                            </div>
+                            <span>Foto</span>
+
+                      </a>
+                    <?php } ?>
              
           </div>
 
@@ -126,7 +159,7 @@
                     foreach($noticias as $key => $value) {
                       $sql =  MySql::conectar()->prepare("SELECT  `slug` FROM  `tb_site.categoria` WHERE id = ? ");
                       $sql->execute(array($value['categoria_id']));
-                      $categoriaNome = $sql->fetch()['slug'];
+                      $categoriaNome = $sql->fetch();
 
 
                       //Buscando usuario que publicou
@@ -188,37 +221,49 @@
 
       
       <div class="info-card">
-        <p class="card-text"><?php echo substr($value['conteudo'],0,50).'...';?></p>
-        <a href="<?php echo INCLUDE_PATH; ?>noticia/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="card-link">Ver mais</a>
+        <p class="card-text"><?php echo substr($value['conteudo'],0,100).'...';?></p>
+        
       </div>
-        <div class="img-card">
-          <img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['capa'] ?>" alt="Card image cap"  >
-         </div>     
 
-          <div class="card-body">
+      <?php if(@$value['capa'] == '') {?>
 
-           
+        <div style="visibility: hidden;"> </div> 
 
-          </div>
+        <?php }else{ ?>
+          <div class="img-card">
+          <img class="" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$value['capa'] ?>" alt="Card image cap"  >
+         </div>  
+
+         <?php } ?>
+        
         </div>
 
      
 
             
       <!--INICIO AÇÃO-->
-        <div class="acao-post" style="">
-            <div class="content-acao" style=" ">
+        <div class="acao-post" >
+            <div class="content-acao">
 
                   <a class="btn-curtir"   >
                             <i class='material-icons' >thumb_up</i>
                              <span>Curtir</span> 
                   </a>
 
-                    <a class="btn-comentar" onclick="listFeed(<?php echo $value['id']?>)" data-bs-toggle="modal" href="#feedUser" role="button">
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <a class="btn-comentar" onclick="listFeed(<?php echo $value['id']?>)" data-bs-toggle="modal"      href="#feedUser" role="button">
                             <i  class='material-icons'>chat</i>
                               <span>Comentar</span> 
                   </a>
-                  <a class="btn-repost" style=" ">
+                  <?php }else{ ?>
+                    <a class="btn-comentar" >
+                            <i  class='material-icons'>chat</i>
+                              <span>Comentar</span> 
+                  </a>
+                    <?php } ?>
+
+
+                  <a class="btn-repost" >
                             <i  class='material-icons'>share</i>
                               <span>Compartilhar</span> 
                   </a>
@@ -242,7 +287,7 @@
 
 
  
-<!-- Modal -->
+<!-- Modal 1 -->
 
 
 <div class="modal fade" id="feedUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -285,8 +330,10 @@
                   <span id="conteudoFeed" ></span>
                 </div>
 
-                <div class="img-card">
-                    <span id="capaFeed" ></span>
+          
+
+                <div id="capaFeed" >
+                  
                 </div>     
          
         </div>
@@ -353,6 +400,54 @@
      
   </div>
 </div>
+
+<!-- Modal 2 -->
+
+
+<div class="modal fade" id="addFeed" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Criar publicação</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+      <div class="usuario" > <!--INICIO DO FORM-->
+
+            <div class="usuario-perfil"> <!--INICIO DO HEADER-->
+
+                <a class="pelicula-perfil-user" href="<?php echo INCLUDE_PATH; ?>usuario_single?id=<?php echo @$_SESSION['id'];?>"> 
+                  <img class="perfil-user" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$_SESSION['img'];?>" alt="Card image cap"  >
+                </a>
+
+                <div class="info-usuario">
+                  <h6  ><?php echo @$_SESSION['nome'];?></h6>
+                </div>
+                </div>   
+            
+        
+            </div> <!--FIM DO HEADER-->
+
+            <form id="car-publi-form" enctype="multipart/form-data" >
+                <div class="content-conteudo">
+                    <input type="text" name="conteudo" placeholder="No que voce está pensando, <?php echo   substr($_SESSION['nome'],0,7);?>?">
+                    <input type="hidden"  name="id_user" value="<?php echo @$_SESSION['id'] ?>"  />
+                    <input type="hidden"  name="data" value="<?php echo date('Y-m-d') ?>"  />
+                </div>
+                <div class="content-imagem">
+                    <input type="file" class="form-control-file" name="capa">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Publicar">
+            </form>
+
+
+      </div><!--FIM DO FORM-->
+     
+  </div>
+</div>
+
+
 
 <script src="js/custom.js"></script>
 

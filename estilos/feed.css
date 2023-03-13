@@ -308,6 +308,22 @@ color:#3f4040;
   padding: 0 10px;
 }
 
+.content-conteudo{
+  margin-top: 10px;
+  height: 100px;
+}
+.content-conteudo input{
+  outline: none;
+  border: none;
+  background: transparent;
+  padding: 0 10px;
+  width: 100%;
+}
+.content-imagem{
+  height: 50px;
+
+}
+
 @media only screen and (max-width:980px) {
   .section-primary{
     width: 500px; 
