@@ -114,7 +114,7 @@
     </div>
 
                 <?php 
-                     $porPagina = 5;
+                     $porPagina = 100;
                       //CONSULTAR
                      $query = "SELECT * FROM `tb_site.noticias` ";
                      if(@$cat['nome'] !=''){
@@ -287,7 +287,7 @@
 
 
  
-<!-- Modal 1 -->
+<!-- Modal ADD COMENTARIO -->
 
 
 <div class="modal fade" id="feedUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -370,6 +370,7 @@
 
                         <div id="idContent" class="content-coment"></div>
 
+                        <span id="msg" > </span>
                         <div class="form-comentario" >
                              <a class="" href=""> 
                                     <img class="perfil-user-coment" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo @$_SESSION['img'];?>" alt="Card image cap"  >
@@ -382,7 +383,7 @@
                                     <input type="hidden"  name="nome_user" value="<?php echo @$_SESSION['nome'] ?>"  />
                                     <input type="hidden"  name="img_user" value="<?php echo @$_SESSION['img'];?>"  />
                                     <input type="hidden"  name="data" value="<?php echo date('Y-m-d') ?>"  />
-                                    <input type="submit"  style="visibility: hidden;" value="enviar"  />
+                                    <input type="submit" id="input" style="visibility: hidden;" value="enviar"  />
 
                               </form>
                         </div>
@@ -401,7 +402,7 @@
   </div>
 </div>
 
-<!-- Modal 2 -->
+<!-- Modal ADD PUBLICACAO -->
 
 
 <div class="modal fade" id="addFeed" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -413,7 +414,7 @@
       </div>
       <div class="modal-body">
        
-                    <span id="msg" ></span>
+                    <span id="msgADD" ></span>
 
       <div class="usuario" > <!--INICIO DO FORM-->
 

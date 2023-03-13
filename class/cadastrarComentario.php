@@ -14,8 +14,34 @@ if(!empty($dados['comentario'])){
     $cad_coment->bindParam(':comentario', $dados['comentario']);
     $cad_coment->bindParam(':data', $dados['data']);
     $cad_coment->execute();
-    
-    $retorna = ['erro' => false, 'msg' => 'Comentario cadastrado'];
+
+    $cad_coment = $cad_coment->fetch(PDO::FETCH_ASSOC);
+
+   
+   
+
+   
+
+    $dadosPubli = '
+                    <div class="cont-user-coment">
+
+                            <div class="content-user-coment">
+                                <a class=""> 
+                                <img class="perfil-user-coment" src="./painel/uploads/'.$dados['img_user'].'" alt="Card image cap"  >
+                                </a>
+                            </div>
+
+                            <div class="coment">
+                                <h6><b>'.$dados['nome_user'].'</b></h6>
+                                <p>'.$dados['comentario'].'</p>
+
+                        </div>
+                
+                </div>
+    ';
+
+
+    $retorna = ['erro' => false, 'msg' => 'Comentario cadastrado', 'dados' => $dadosPubli];
 
 }else{
     $retorna = ['erro' => true, 'msg' => 'Erro ao cadastrar'];

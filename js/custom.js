@@ -33,7 +33,6 @@ async function listFeed(id){
 
         cadForm.addEventListener("submit", async (e) =>{
             e.preventDefault(); //para não recarrecar a pagina
-            console.log("chegou")
 
             const dadosForm =  new FormData(cadForm);
             dadosForm.append("add", 1)
@@ -47,8 +46,18 @@ async function listFeed(id){
 
             const respostaComentario = await dadosComentario.json();
             console.log(respostaComentario);
-            document.getElementById('msg').innerHTML = resposta['msg'];
 
+            if(respostaComentario['erro']){
+                document.getElementById('msg').innerHTML ='<div class="alert alert-danger" role="alert">'+respostaComentario['msg']+'</div>'  ;
+                document.getElementById("cad-comentario-form").reset(); //resetar input
+            }else{
+                document.getElementById('msg').innerHTML = respostaComentario['dados']  ;
+                document.getElementById("cad-comentario-form").reset(); //resetar input
+                
+            }
+
+            
+           
 
 
         })
@@ -90,13 +99,15 @@ async function listFeed(id){
         const respostaPubli = await dadosPubli.json();
 
         if(respostaPubli['erro']){
-            document.getElementById('msg').innerHTML ='<div class="alert alert-danger" role="alert">'+respostaPubli['msg']+'</div>'  ;
+            document.getElementById('msgADD').innerHTML ='<div class="alert alert-danger" role="alert">'+respostaPubli['msg']+'</div>'  ;
+            document.getElementById("car-publi-form").reset(); //resetar input
             
                 //const visModal = document.getElementById("feedUser");
               // visModal.show();
         }else{
-            document.getElementById('msg').innerHTML ='<div class="alert alert-success" role="alert">'+respostaPubli['msg']+'</div>'  ;
-           // document.getElementById("aviso").show();
+            document.getElementById('msgADD').innerHTML ='<div class="alert alert-success" role="alert">'+respostaPubli['msg']+'</div>'  ;
+            document.getElementById("car-publi-form").reset(); //resetar input
+
                  console.log(respostaPubli);
         }
        
