@@ -79,6 +79,7 @@ include('config.php');
       <?php } ?>
       
       
+      <script src="js/custom.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

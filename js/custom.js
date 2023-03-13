@@ -116,3 +116,19 @@ async function listFeed(id){
 
   })
 
+  //DELETAR  PUBLICAÇÃO
+  async function apagarFeed(id){
+    console.log("Envido: " +id)
+    const dados = await fetch("./class/apagarFeed.php?id=" + id) //enviar
+    const resposta = await dados.json(); //receber
+    console.log(resposta)
+
+    if(resposta['erro']){
+        document.getElementById('msg').innerHTML ='<div class="alert alert-danger" role="alert">'+resposta['msg']+'</div>'  ;
+        
+    }else{
+        document.getElementById('msg').innerHTML ='<div class="alert alert-primary" role="alert">'+resposta['msg']+'</div>'  ;
+
+    }
+
+}

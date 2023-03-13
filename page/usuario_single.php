@@ -118,14 +118,14 @@
                       <!-- MENU -->
                           
                           <?php if( @$usuario_resposavel['user'] == @$_SESSION['user'] || @$_SESSION['cargo'] == 2) { ?>
-                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                
-                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH_PAINEL ?>pages/gerenciar-noticia-feed?gerenciar=<?php echo $value['id']; ?>">Editar</a>
-                          </div>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								  <a class="dropdown-item"  onclick="apagarFeed(<?php echo $value['id']?>),window.location.reload()" >Apagar</a>
+	                          </div>
                               <?php }else{ ?>
                               
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                  <a class="dropdown-item" href="<?php echo INCLUDE_PATH?>noticia">Editar</a>
+									<a class="dropdown-item"  >Apagar</a>
+
                               </div>
 
                             <?php   }  ?>
